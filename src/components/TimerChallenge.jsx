@@ -13,6 +13,11 @@ export default function TimerChallenge({ title, targetTime }) {
     dialog.current.open();
   }
 
+  function handleModalClose(e) {
+    e.preventDefault();
+    dialog.current.close();
+  }
+
   function handleStart() {
     timer.current = setInterval(() => {
       setTimeRemaining((prevTimeRemaining) => prevTimeRemaining - 10);
@@ -30,6 +35,7 @@ export default function TimerChallenge({ title, targetTime }) {
         ref={dialog}
         targetTime={targetTime}
         remainingTime={timeRemaining}
+        onModalClose={handleModalClose}
       />
 
       <section className="challenge">
